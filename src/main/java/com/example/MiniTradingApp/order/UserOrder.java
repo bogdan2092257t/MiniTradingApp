@@ -2,6 +2,7 @@ package com.example.MiniTradingApp.order;
 
 public class UserOrder {
     private long id;
+    private long userId;
     private String ticker;
     private OrderDirection direction;
     private int quantity;
@@ -18,6 +19,7 @@ public class UserOrder {
     }
 
     public UserOrder(long id,
+                     long userId,
                      String ticker,
                      OrderDirection direction,
                      int quantity,
@@ -25,6 +27,7 @@ public class UserOrder {
                      OrderStatus status,
                      String rejectionReason) {
         this.id = id;
+        this.userId = userId;
         this.ticker = ticker;
         this.direction = direction;
         this.quantity = quantity;
@@ -35,6 +38,14 @@ public class UserOrder {
 
     public long getId() {
         return id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public OrderDirection getDirection() {

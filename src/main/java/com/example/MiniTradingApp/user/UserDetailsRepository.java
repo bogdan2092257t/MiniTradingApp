@@ -21,6 +21,18 @@ public class UserDetailsRepository {
                 .findFirst();
     }
 
+    public Optional<UserDetails> findByUserId(long userId) {
+        String sql = "SELECT id, username, name, balance FROM user_details WHERE id = ?";
+        return jdbc.query(sql, userDetailsRowMapper(), userId)
+                .stream()
+                .findFirst();
+    }
+
+    public void updateBalance(long userId, double balance) {
+        String sql = "UPDATE user_details SET balance = ? WHERE id = ?";
+        jdbc.update(sql, balance, userId);
+    }
+
     private RowMapper<UserDetails> userDetailsRowMapper() {
         return (rs, rowNum) -> new UserDetails(
                 rs.getLong("id"),
